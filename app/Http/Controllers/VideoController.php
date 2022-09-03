@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\videoupl;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\File;
 
@@ -22,8 +23,9 @@ class VideoController extends Controller
     public function store(Request $req)
     {
         $validator = Validator::make($req->all(), [
-            'video' => ['required', 'mimes:jpg, mp4, 3gp, ogg, ogx, webm', 'max:2048'],
-            'name' => ['required']
+            'name' => ['required'],
+            'video' => ['required', 'mimes:jpg,mp4,3gp,ogg,ogx,webm']
+
 
         ]);
         if ($validator->fails()) {
@@ -42,6 +44,7 @@ class VideoController extends Controller
         }
 
         $video->save();
+        videoupl::dispatch($file);
         return redirect()->back()->with('status', 'Video added successfully');
     }
 }

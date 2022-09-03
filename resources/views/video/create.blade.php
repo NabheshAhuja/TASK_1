@@ -10,7 +10,7 @@
                     </div>
                     <div class="card-body">
 
-                        <form action="{{ url('upload-video') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('upload-video') }}" method="POST" id="fuf" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group-mb-3">
                                 <label for="">video name</label>
@@ -30,8 +30,15 @@
                                 </div>
                             @endif
                             <br>
-                            <div class="form-group-mb-3">
+                            <div class="form-group mb-3">
                                 <button type="submit" class="btn btn-dark ">Submit!</button>
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning "
+                                        role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                                        style="width: 0%"></div>
+                                </div>
                             </div>
 
                         </form>
