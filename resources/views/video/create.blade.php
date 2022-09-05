@@ -12,11 +12,11 @@
 
                         <form action="{{ url('upload-video') }}" method="POST" id="fuf" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group-mb-3">
+                            <div class="form-group mb-3">
                                 <label for="">video name</label>
                                 <input type="text" name="name" class="form-control">
                             </div>
-                            <div class="form-group-mb-3">
+                            <div class="form-group mb-3">
                                 <label for="">upload it!</label>
                                 <input type="file" name="video" class="mb-2 form-control">
                             </div>

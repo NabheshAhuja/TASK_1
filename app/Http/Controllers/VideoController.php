@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Jobs\videoupl;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\File;
 
 use App\Models\video;
+use Facade\FlareClient\Stacktrace\File as StacktraceFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class VideoController extends Controller
 {
@@ -32,19 +34,8 @@ class VideoController extends Controller
 
             return back()->withInput()->withErrors($validator);
         } else
-            $video = new video;
-        $video->video_name = $req->input('name');
-        if ($req->hasFile('video')) {
-
-            $file = $req->file('video');
-            $extension = $file->getClientOriginalExtension();
-            $filename = config('app.default_storage') . time() . '.' . $extension;
-            $file->move('uploads/video/', $filename);
-            $video->video = $filename;
-        }
-
-        $video->save();
-        videoupl::dispatch($file);
-        return redirect()->back()->with('status', 'Video added successfully');
+            // $video =  Storage::putFile('video', $req->file('video'));;
+            videoupl::dispatch($req);
+        return redirect()->back();
     }
 }
