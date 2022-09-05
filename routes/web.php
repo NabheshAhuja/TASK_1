@@ -19,6 +19,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //Videos
-Route::get('video_s', [VideoController::class, 'index']);
+Route::get('/', [VideoController::class, 'index']);
 Route::get('upload-video', [VideoController::class, 'create']);
 Route::post('upload-video', [VideoController::class, 'store']);
